@@ -52,18 +52,19 @@ def main():
         print('Error: path does not exist')
         return
 
-    if fp.is_dir():
-        for cur in fp.rglob('*.wav'):
-            pass
+    file_list = [ fp ]
 
-    elif fp.is_file():
-        new_file = fp.with_suffix('.docx')
+    if fp.is_dir():
+        file_list = fp.rglob('*.wav'):
+
+    for cur in file_list:
+        new_file = cur.with_suffix('.docx')
 
         if new_file.exists():
             print('Transcript already exists: {}'.format(new_file.resolve()))
             return
 
-        content = google_transcribe_file(fp)
+        content = google_transcribe_file(cur)
 
         file_name = str(new_file)
         write_document(file_name, content, args.paragraph_break)
