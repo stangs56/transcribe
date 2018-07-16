@@ -55,7 +55,7 @@ def main():
     file_list = [ fp ]
 
     if fp.is_dir():
-        file_list = fp.rglob('*.wav'):
+        file_list = fp.rglob('*.wav')
 
     for cur in file_list:
         new_file = cur.with_suffix('.docx')
