@@ -57,14 +57,14 @@ def main():
     if fp.is_dir():
         file_list = fp.rglob('*.wav')
 
-    for cur in file_list:
-        new_file = cur.with_suffix('.docx')
+    for current_file in file_list:
+        new_file = current_file.with_suffix('.docx')
 
         if new_file.exists():
             print('Transcript already exists: {}'.format(new_file.resolve()))
             return
 
-        content = google_transcribe_file(cur)
+        content = google_transcribe_file(current_file)
 
         file_name = str(new_file)
         write_document(file_name, content, args.paragraph_break)
